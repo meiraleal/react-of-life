@@ -14,27 +14,25 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      rows,
-      cols,
       generation: 0,
       isEmpty: true,
       isRunning: false,
-      grid: Life.initializeGrid(rows, cols, initialState)
+      grid: Life.initializeGrid(rows, cols)
     };
   }
 
-  takeStep(oldGrid, initialState) {
+  takeStep(oldGrid, seed) {
     let generation = this.state.generation;
     let grid;
     let isEmpty = this.state.isEmpty;
     let isRunning = this.state.isRunning;
     if(this.state.isEmpty) {
-      grid = Life.populateGrid(this.state.grid, initialState);
+      grid = Life.populateGrid(this.state.grid, seed);
       isEmpty = false;
       isRunning = true;
     }
     else
-      grid = Life.calculateNewState(oldGrid, this.state.rows, this.state.cols);
+      grid = Life.calculateNewState(oldGrid, this.props.rows, this.props.cols);
     //check if nothing is happening over a generation. Array comparison in a loop would be faster.
     if(JSON.stringify(oldGrid) === JSON.stringify(grid))
       isRunning = false;
