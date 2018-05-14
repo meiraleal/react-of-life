@@ -1,5 +1,8 @@
-export var getInitialGrid = (rows, cols, state) => {
-  let grid = Array(50).fill().map(()=> Array(50).fill(0));
+export var initializeGrid = (rows, cols, state) => {
+  return Array(rows).fill().map(()=> Array(cols).fill(0));
+};
+
+export var populateGrid = (grid, state) => {
   state.map(cell => grid[cell[0]][cell[1]] = 1);
   return grid;
 };
