@@ -4,12 +4,6 @@ import Header from './Header';
 import Grid from './Grid';
 import * as Life from './Life';
 
-const rows = 50;
-const cols = 50;
-//const initialState = [[0,0], [0, 1], [1, 0], [1, 3], [2, 1], [2, 2]]; //initialState
-//const initialState = [[8,8], [8, 9], [8, 10], [9, 8], [10, 9]]; //glider
-const initialState = [[28,28], [28, 31], [29, 27], [30, 27], [30, 31], [31, 27], [31, 28], [31, 29], [31, 30]]; //spaceship
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +11,7 @@ class App extends Component {
       generation: 0,
       isEmpty: true,
       isRunning: false,
-      grid: Life.initializeGrid(rows, cols)
+      grid: Life.initializeGrid(props.rows, props.cols)
     };
   }
 
@@ -42,7 +36,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    setInterval(() => this.takeStep(this.state.grid, initialState), 100);
+    setInterval(() => this.takeStep(this.state.grid, this.props.seed), 100);
   }
 
   render() {
