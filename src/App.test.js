@@ -8,6 +8,7 @@ import App from './App';
 import Grid from './Grid';
 import Header from './Header';
 import Cell from './Cell';
+import * as Life from './Life';
 
 configure({ adapter: new Adapter() });
 
@@ -40,20 +41,12 @@ describe('<App />', () => {
     const wrapper = shallow(<App {...{rows, cols, seed}}/>);
     expect(wrapper.find(Grid)).toHaveLength(1);
   });
-
-  it('Run through a game. That is: While there are living cells, take one step, wait for a period (call it 1000ms), then take another step, until no cells are left alive.', () => {
-
-  });
-
-
 });
 describe('<Grid />', () => {
-  it('Initialize a 50x50 grid of cells,', () => {
-    const wrapper = mount(<App {...{rows, cols, seed}}/>);
+  it('Initialize a 50x50 grid of cells, all considered dead, to begin with', () => {
+    let grid = Life.initializeGrid(rows, cols).grid;
+    const wrapper = mount(<Grid {...{rows, cols, grid}}/>);
     expect(wrapper.find(Cell)).toHaveLength(50*50);
-  });
-  it('all considered dead, to begin with.', () => {
-    const wrapper = mount(<App {...{rows, cols, seed}}/>);
     expect(wrapper.find(".Dead")).toHaveLength(50*50);
   });
 });

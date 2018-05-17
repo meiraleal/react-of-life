@@ -71,7 +71,7 @@ export function* run(rows, cols, seed) {
   while(1) {
     grid = takeStep(grid, seed);
     if(grid.status === Status.FINISHED)
-      return false;
+      return;
     yield grid;
   }
 }
