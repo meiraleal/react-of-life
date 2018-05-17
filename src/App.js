@@ -14,6 +14,7 @@ class App extends Component {
     };
   }
 
+  // Component version of takeStep, calling the GameOfLife engine
   takeStep(gameOfLife, interval) {
     let newState = gameOfLife.next().value;
     console.log(newState);
