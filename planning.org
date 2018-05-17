@@ -1,17 +1,19 @@
 #+TITLE: Game Of Life Challenge
 
-* Planning
-* Initial setup
-* Basic CSS
-* Create board
-* Create grid
-* Populate grid with cells
-* Implement cell behavior
-* Allow to change state of a cell by click
-* Implement initial state
-* Implement controllers for start and stop
-* Show number of current generation
-* Add controllers for the number of rows and cols
-* Add controller for the time
-* Improve CSS and Feel&Look
-* create test cases
+* DONE Planning
+* DONE Initial setup
+* DONE Basic CSS
+* DONE Create board
+* DONE Create grid
+* DONE Populate grid with cells
+* DONE Implement cell behavior
+* DONE Implement initial state
+* DONE Show number of current generation
+* DONE Improve CSS and Feel&Look
+* DONE create test cases
+
+* Future
+** Allow to change state of a cell by click
+** Implement controllers for start and stop
+** Add controllers for the number of rows and cols
+** Add controller for the time

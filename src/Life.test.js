@@ -9,11 +9,12 @@ describe('Life Engine', () => {
 
   });
   it('Run through a game. That is: While there are living cells, take one step, wait for a period (call it 1000ms), then take another step, until no cells are left alive.', () => {
-    let gameOfLife = Life.run(rows, cols, seed);
+    //let gameOfLife = Life.run(rows, cols, seed);
     //while(1) {
     //  let running = gameOfLife.next();
+    //  console.log(running);
     //  if(running.status === "done") {
-    //    expect(running.value.status).toBeEqual(Life.FINISHED);
+    //    expect(running.value).toBeEqual(undefined);
     //    return;
     //  }
     //}
