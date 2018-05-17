@@ -1,13 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Cell extends Component {
-  render() {
-    return (
-      <React.Fragment>
-        <div className={`Cell ${this.props.state ? 'Alive' : 'Dead'}`}></div>
-      </React.Fragment>
-    );
-  }
-}
+var Cell = (props) => {
+  return (
+    <div className={`Cell ${props.state ? 'Alive' : 'Dead'}`}></div>
+  );
+};
 
 export default Cell;

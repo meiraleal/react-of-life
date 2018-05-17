@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import Header from './Header';
 import Grid from './Grid';
 import * as Life from './Life';
@@ -15,35 +14,22 @@ class App extends Component {
     };
   }
 
-  takeStep(oldGrid, seed) {
-    let generation = this.state.generation;
-    let grid;
-    let isEmpty = this.state.isEmpty;
-    let isRunning = this.state.isRunning;
-    if(this.state.isEmpty) {
-      grid = Life.populateGrid(this.state.grid, seed);
-      isEmpty = false;
-      isRunning = true;
-    }
-    else
-      grid = Life.calculateNewState(oldGrid, this.props.rows, this.props.cols);
-    //check if nothing is happening over a generation. Array comparison in a loop would be faster.
-    if(JSON.stringify(oldGrid) === JSON.stringify(grid))
-      isRunning = false;
-    else
-      generation += 1;
+  takeStep(oldGrid, seed = []) {
+    let { grid, generation, isEmpty, isRunning } = Life.takeStep(this.state, oldGrid, seed); //switch the old state of the grid for the next one
     this.setState({grid, generation, isEmpty, isRunning});
   }
 
   componentDidMount() {
-    setInterval(() => this.takeStep(this.state.grid, this.props.seed), 100);
+    setInterval(() =>
+                this.takeStep(this.state.grid, this.props.seed),
+                this.props.interval);
   }
 
   render() {
     return (
       <div className="App">
-        <Header generation={this.state.generation}/>
-        <Grid grid={this.state.grid} />
+        <Header generation={this.state.generation} />
+        <Grid grid={this.state.grid} rows={this.props.rows} cols={this.props.cols} />
       </div>
     );
   }

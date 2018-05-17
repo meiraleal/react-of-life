@@ -1,20 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Cell from './Cell';
 
-class Grid extends Component {
-  generateGrid(grid) {
-    return grid.map((row, rowIndex) =>
-                    row.map((col, colIndex) =>
-                            <Cell key={`${rowIndex}${colIndex}`}state={col}/>));
-  }
+var generateGrid = (grid) => {
+  return grid.map((row, rowIndex) =>
+                  row.map((col, colIndex) =>
+                          <Cell key={`${rowIndex}${colIndex}`} state={col}/>));
+};
+var getGridStyle = (rows, cols) => {
+  return {
+    gridTemplateRows: `repeat(${rows}, 1fr)`,
+    gridTemplateColumns: `repeat(${cols}, 1fr)`
+  };
+};
 
-  render() {
-    return (
-      <div className="Grid">
-        {this.generateGrid(this.props.grid)}
-      </div>
-    );
-  }
-}
+var Grid = (props) => {
+  return (
+    <div className="Grid" style={getGridStyle(props.rows, props.cols)}>
+      {generateGrid(props.grid)}
+    </div>
+  );
+};
 
 export default Grid;
