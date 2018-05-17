@@ -22,8 +22,6 @@ body {
     height: 500px;
     border: 2px solid #000;
     display: grid;
-    grid-template-columns: repeat(50, 1fr);
-    grid-template-rows: repeat(50, 1fr);
     margin: 0 auto;
 }
 

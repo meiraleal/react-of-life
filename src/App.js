@@ -6,6 +6,7 @@ import * as Life from './Life';
 class App extends Component {
   constructor(props) {
     super(props);
+    // As all state is managed in the container component, it isn't necessary to use redux yet (no communication between components)
     this.state = {
       generation: 0,
       status: Life.Status.NOT_RUNNING,
