@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 const rows = 50;
 const cols = 50;
-const interval = 1000;
+const interval = 100;
 //const seed = [[0,0], [0, 1], [1, 0], [1, 3], [2, 1], [2, 2]]; //initialState
 //const seed = [[10,10], [10, 11], [11, 10], [11, 13], [12, 11], [12, 12]]; //initialState
 //const seed = [[8,8], [8, 9], [8, 10], [9, 8], [10, 9]]; //glider

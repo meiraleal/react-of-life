@@ -8,20 +8,25 @@ class App extends Component {
     super(props);
     this.state = {
       generation: 0,
-      status: Life.Status.INITIALIZED,
-      grid: Life.initializeGrid(props.rows, props.cols)
+      status: Life.Status.NOT_RUNNING,
+      grid: []
     };
   }
 
-  takeStep(oldGrid, seed = []) {
-    let { grid, generation, status } = Life.takeStep(this.state, oldGrid, seed); //switch the old state of the grid for the next one
-    this.setState({grid, generation, status});
+  takeStep(gameOfLife, interval) {
+    let newState = gameOfLife.next().value;
+    console.log(newState);
+    if(newState)
+      this.setState(newState);
+    else //if the run iterator returns undefined, we stop the loop
+      clearInterval(interval);
   }
 
   componentDidMount() {
-    setInterval(() =>
-                this.takeStep(this.state.grid, this.props.seed),
-                this.props.interval);
+    let gameOfLife = Life.run(this.props.rows, this.props.cols, this.props.seed);
+    let interval = setInterval(() =>
+                               this.takeStep(gameOfLife, interval),
+                               this.props.interval);
   }
 
   render() {

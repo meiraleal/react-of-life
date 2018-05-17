@@ -1,12 +1,13 @@
-export const Status = {INITIALIZED: 0, RUNNING: 1, FINISHED: 2};
+export const Status = {NOT_RUNNING: 0, STARTING: 1, RUNNING: 2, FINISHED: 3};
 
-export var initializeGrid = (rows, cols, state) => {
-  return Array(rows).fill().map(()=> Array(cols).fill(0));
+export var initializeGrid = (rows, cols) => {
+  let grid = Array(rows).fill().map(()=> Array(cols).fill(0));
+  return {generation: 0, status: Status.STARTING, grid};
 };
 
 export var seedGrid = (grid, state) => {
   state.map(cell => grid[cell[0]][cell[1]] = 1);
-  return grid;
+  return {generation: 0, status: Status.RUNNING, grid};
 };
 
 export var applyRules = (left, right, index, arr, cellState) => { //reducer
@@ -52,16 +53,25 @@ export var calculateNewState = (grid) => {
                           getNewCellState(grid, currentRow, currentCol)));
 };
 
-export var takeStep = ({generation, status, grid}, oldGrid = [], seed = []) => {
-  if(status === 0) {
-    grid = seedGrid(grid, seed);
-    status = Status.RUNNING;
-  }
-  else
-    grid = calculateNewState(oldGrid);
-  if(JSON.stringify(oldGrid) === JSON.stringify(grid))
+export var takeStep = ({generation, status, grid}, oldGrid, seed = []) => {
+  var newGrid = calculateNewState(grid);
+  if(JSON.stringify(grid) === JSON.stringify(newGrid))
     status = Status.FINISHED;
   else
     generation += 1;
-  return {generation, status, grid};
+  return {generation, status, grid: newGrid};
 };
+
+
+export function* run(rows, cols, seed) {
+  var grid = initializeGrid(rows, cols);
+  yield grid;
+  grid = seedGrid(grid.grid, seed);
+  yield grid;
+  while(1) {
+    grid = takeStep(grid, seed);
+    if(grid.status === Status.FINISHED)
+      return false;
+    yield grid;
+  }
+}
