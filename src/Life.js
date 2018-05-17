@@ -1,3 +1,5 @@
+export const Status = {INITIALIZED: 0, RUNNING: 1, FINISHED: 2};
+
 export var initializeGrid = (rows, cols, state) => {
   return Array(rows).fill().map(()=> Array(cols).fill(0));
 };
@@ -50,17 +52,16 @@ export var calculateNewState = (grid) => {
                           getNewCellState(grid, currentRow, currentCol)));
 };
 
-export var takeStep = ({generation, isEmpty, isRunning, grid}, oldGrid = [], seed = []) => {
-  if(isEmpty) {
+export var takeStep = ({generation, status, grid}, oldGrid = [], seed = []) => {
+  if(status === 0) {
     grid = seedGrid(grid, seed);
-    isEmpty = false;
-    isRunning = true;
+    status = Status.RUNNING;
   }
   else
     grid = calculateNewState(oldGrid);
   if(JSON.stringify(oldGrid) === JSON.stringify(grid))
-    isRunning = false;
+    status = Status.FINISHED;
   else
     generation += 1;
-  return {generation, isEmpty, isRunning, grid};
+  return {generation, status, grid};
 };

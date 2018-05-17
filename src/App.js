@@ -8,15 +8,14 @@ class App extends Component {
     super(props);
     this.state = {
       generation: 0,
-      isEmpty: true,
-      isRunning: false,
+      status: Life.Status.INITIALIZED,
       grid: Life.initializeGrid(props.rows, props.cols)
     };
   }
 
   takeStep(oldGrid, seed = []) {
-    let { grid, generation, isEmpty, isRunning } = Life.takeStep(this.state, oldGrid, seed); //switch the old state of the grid for the next one
-    this.setState({grid, generation, isEmpty, isRunning});
+    let { grid, generation, status } = Life.takeStep(this.state, oldGrid, seed); //switch the old state of the grid for the next one
+    this.setState({grid, generation, status});
   }
 
   componentDidMount() {
