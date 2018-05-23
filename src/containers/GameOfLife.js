@@ -3,20 +3,12 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import App from '../components/App';
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    ...state
-  };
-};
-
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     startGame: (rows, cols, seed, interval) => {
       dispatch(actions.startGame(rows, cols, seed, interval, dispatch));
     },
-    takeStep: (gameOfLife, interval) => {
-      dispatch(actions.takeStep(gameOfLife, interval));
-    }
+    takeStep: actions.takeStep
   };
 };
 
@@ -30,7 +22,7 @@ class GameOfLife extends Component {
 }
 
 const StatefulGameOfLife = connect(
-  mapStateToProps,
+  (state) => state,
   mapDispatchToProps
 )(GameOfLife);
 
