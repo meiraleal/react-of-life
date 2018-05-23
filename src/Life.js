@@ -1,5 +1,4 @@
-// The possible states of a GameOfLife instance
-export const Status = {NOT_RUNNING: 0, STARTING: 1, RUNNING: 2, FINISHED: 3};
+import * as Status from './constants/GameStatus';
 
 // Initialize an empty grid with the given rows and cols
 export var initializeGrid = (rows, cols) => {
