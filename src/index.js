@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import App from './components/App';
 const rows = 50;
 const cols = 50;
 const interval = 100;

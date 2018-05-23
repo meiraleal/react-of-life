@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import Grid from './Grid';
-import * as Life from './Life';
+import * as Life from '../Life';
+import './app.css';
 
 class App extends Component {
   constructor(props) {
