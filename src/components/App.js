@@ -1,24 +1,30 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import Header from './Header';
-import Grid from './Grid';
+import React from 'react'
+import { View, StyleSheet } from 'react-native'
+import PropTypes from 'prop-types'
+import Header from './Header'
+import Grid from './Grid'
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#333'
-  }
-});
+    backgroundColor: '#333',
+  },
+})
 
-var App = ((props) => {
-  return (
-    <View className="App" style={styles.container}>
-      <Header generation={props.generation} />
-      <Grid grid={props.grid} rows={props.rows} cols={props.cols} />
-    </View>
-  );
-});
+const App = (props => (
+  <View className="App" style={styles.container}>
+    <Header generation={props.generation} />
+    <Grid grid={props.grid} />
+  </View>
+))
 
-export default App;
+App.propTypes = {
+  // The current generation since the game started
+  generation: PropTypes.number.isRequired,
+  // The current grid with the live and dead cells
+  grid: PropTypes.array.isRequired,
+}
+
+export default App
