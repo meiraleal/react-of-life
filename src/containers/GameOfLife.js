@@ -1,16 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions';
+import { startGame } from '../actions';
 import App from '../components/App';
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    startGame: (rows, cols, seed, interval) => {
-      dispatch(actions.startGame(rows, cols, seed, interval));
-    },
-    takeStep: actions.takeStep
-  };
-};
 
 class GameOfLife extends Component {
   componentDidMount() {
@@ -21,9 +12,10 @@ class GameOfLife extends Component {
   }
 }
 
+// Map the actions needed inside the App - startGame and the state from redux
 const StatefulGameOfLife = connect(
   (state) => state,
-  mapDispatchToProps
+  {startGame}
 )(GameOfLife);
 
 export default StatefulGameOfLife;
