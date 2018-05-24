@@ -36,6 +36,7 @@ Tests created using Jest & Enzyme.
 |-- package.json
 |-- package-lock.json
 |-- README.md <-- this file
+|-- index.js <-- Entry point. Where we set up the app and the redux store
 ```
 
 ## Running
