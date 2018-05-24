@@ -1,22 +1,19 @@
-import React from 'react';
-import { AppRegistry } from 'react-native';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import GameOfLife from './src/containers/GameOfLife';
-import reducers from './src/reducers';
+import React from 'react'
+import { AppRegistry } from 'react-native'
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
+import { composeWithDevTools } from 'redux-devtools-extension'
 
-const store = createStore(
-  reducers,
-  applyMiddleware(thunk)
-);
+import GameOfLife from './src/containers/GameOfLife'
+import reducers from './src/reducers'
 
-const Main = () => {
-  return (
-    <Provider store={store}>
-      <GameOfLife />
-    </Provider>
-  );
-};
+const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)))
 
-AppRegistry.registerComponent('reactOfLife', () => Main);
+const Main = () => (
+  <Provider store={store}>
+    <GameOfLife />
+  </Provider>
+)
+
+AppRegistry.registerComponent('reactOfLife', () => Main)
