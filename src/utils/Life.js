@@ -80,7 +80,7 @@ export function* run(rows, cols, seed) {
   yield grid
   while (1) {
     grid = takeStep(grid)
-    if (grid.status === Status.FINISHED) { return }
     yield grid
+    if (grid.status === Status.FINISHED) { return }
   }
 }

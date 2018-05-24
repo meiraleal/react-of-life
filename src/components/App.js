@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
 
 const App = (props => (
   <View className="App" style={styles.container}>
-    <Header generation={props.generation} />
+    <Header generation={props.generation} status={props.status}/>
     <Grid grid={props.grid} />
   </View>
 ))

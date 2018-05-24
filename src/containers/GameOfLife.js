@@ -10,7 +10,9 @@ class GameOfLife extends Component {
   }
 
   render() {
-    return (<App generation={this.props.game.generation} grid={this.props.game.grid} />)
+    return (<App generation={this.props.game.generation}
+            status={this.props.game.status}
+            grid={this.props.game.grid} />)
   }
 }
 

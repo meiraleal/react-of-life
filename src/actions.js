@@ -13,6 +13,7 @@ export const stopGame = (interval) => {
 // Component version of takeStep, calling the GameOfLife engine
 export const takeStep = (gameOfLife, interval) => {
   const game = gameOfLife.next().value
+  console.log(game);
   // if the run iterator returns a new grid, it update the state, otherwise it stops the game
   if (game) {
     return {
