@@ -6,7 +6,7 @@ import App from '../components/App';
 const mapDispatchToProps = (dispatch) => {
   return {
     startGame: (rows, cols, seed, interval) => {
-      dispatch(actions.startGame(rows, cols, seed, interval, dispatch));
+      dispatch(actions.startGame(rows, cols, seed, interval));
     },
     takeStep: actions.takeStep
   };
