@@ -8,6 +8,7 @@ class GameOfLife extends Component {
   componentDidMount() {
     this.props.startGame(this.props.settings)
   }
+
   render() {
     return (<App generation={this.props.game.generation} grid={this.props.game.grid} />)
   }
