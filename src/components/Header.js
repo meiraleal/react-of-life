@@ -1,12 +1,24 @@
 import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 
 var Header = (props) => {
     return (
-      <div className="Header">
-        <h1>Game Of Life</h1>
-        <h2>Generation: {props.generation}</h2>
-      </div>
+      <View className="Header">
+        <Text style={styles.h1}>Game Of Life</Text>
+        <Text style={styles.h2}>Generation: {props.generation}</Text>
+      </View>
     );
 };
 
 export default Header;
+
+const styles = StyleSheet.create({
+  h1: {
+    fontSize: 40,
+    color: "#FFF"
+  },
+  h2: {
+    fontSize: 30,
+    color: "#FFF"
+  }
+});
