@@ -6,25 +6,31 @@ import App from '../components/App'
 
 class GameOfLife extends Component {
   componentDidMount() {
-    this.props.startGame(this.props.rows, this.props.cols, this.props.seed, this.props.interval)
+    this.props.startGame(this.props.settings)
   }
   render() {
-    return (<App {...this.props} />)
+    return (<App generation={this.props.game.generation} grid={this.props.game.grid} />)
   }
 }
 
 GameOfLife.propTypes = {
   // The function to start the game, received from the container
   startGame: PropTypes.func.isRequired,
-  // the interval (in ms/miliseconds) for each step in the game
-  interval: PropTypes.number.isRequired,
-  // THe number of rows of the grid
-  rows: PropTypes.number.isRequired,
-  // The number of cols of the grid
-  cols: PropTypes.number.isRequired,
-  // The initial seed data to start the game
-  seed: PropTypes.array.isRequired,
-
+  settings: PropTypes.shape({
+    // the interval (in ms/miliseconds) for each step in the game
+    interval: PropTypes.number.isRequired,
+    // THe number of rows of the grid
+    rows: PropTypes.number.isRequired,
+    // The number of cols of the grid
+    cols: PropTypes.number.isRequired,
+    // The initialy seed data to start the game
+    seed: PropTypes.array.isRequired,
+  }).isRequired,
+  game: PropTypes.shape({
+    generation: PropTypes.number.isRequired,
+    grid: PropTypes.array.isRequired,
+    status: PropTypes.number.isRequired,
+  }).isRequired,
 }
 
 // Map the actions needed inside the App - startGame and the state from redux

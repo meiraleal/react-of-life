@@ -12,19 +12,21 @@ export const stopGame = (interval) => {
 
 // Component version of takeStep, calling the GameOfLife engine
 export const takeStep = (gameOfLife, interval) => {
-  const newState = gameOfLife.next().value
+  const game = gameOfLife.next().value
   // if the run iterator returns a new grid, it update the state, otherwise it stops the game
-  if (newState) {
+  if (game) {
     return {
       type: types.TAKE_STEP,
-      ...newState,
+      game
     }
   }
   return dispatch => dispatch(stopGame(interval)) // redux-thunk
 }
 
-// startGame receives
-export const startGame = (rows, cols, seed, interval) => {
+// startGame receives settings and start the game
+export const startGame = ({
+  rows, cols, seed, interval,
+}) => {
   const gameOfLife = Life.run(rows, cols, seed)
   return (dispatch) => {
     const timer = setInterval(
