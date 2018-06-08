@@ -6,6 +6,8 @@ const styles = StyleSheet.create({
   cell: {
     borderWidth: 0.3,
     borderColor: '#333',
+    width: `2%`,
+    height: `2%`,
   },
   dead: {
     backgroundColor: '#FFF',
@@ -15,21 +17,15 @@ const styles = StyleSheet.create({
   },
 })
 
-// Calculate the size of the cell based in the number of cols and rows
-const cellSizeStyle = size => StyleSheet.create({
-  cell: {
-    width: `${size}%`,
-    height: `${size}%`,
-  },
-})
-
-
-const Cell = props => (
-  <View style={[cellSizeStyle(props.cellSize).cell,
-                styles.cell,
-        props.status ? styles.alive : styles.dead]}
-  />
-)
+class Cell extends React.PureComponent {
+  render() {
+    return (
+      <View style={[styles.cell,
+                this.props.status ? styles.alive : styles.dead]}
+        />
+      )
+  }
+}
 
 Cell.propTypes = {
   status: PropTypes.bool.isRequired,

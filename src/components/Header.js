@@ -16,13 +16,17 @@ const styles = StyleSheet.create({
   },
 })
 
-const Header = props => (
-  <View className="Header">
-    <Text style={styles.h1}>Game Of Life</Text>
-    <Text style={styles.h2}>Generation: {props.generation}</Text>
-    <Text style={styles.h2}>Status: {status[props.status]}</Text>
-  </View>
-)
+class Header extends React.PureComponent {
+render() {
+  return (
+    <View className="Header">
+      <Text style={styles.h1}>Game Of Life</Text>
+      <Text style={styles.h2}>Generation: {this.props.generation}</Text>
+      <Text style={styles.h2}>Status: {status[this.props.status]}</Text>
+    </View>
+  )
+}
+}
 
 Header.propTypes = {
   generation: PropTypes.number.isRequired,

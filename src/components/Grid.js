@@ -24,12 +24,15 @@ const styles = StyleSheet.create({
     maxHeight: 300,
   },
 })
-
-const Grid = props => (
-  <View className="Grid" style={styles.grid}>
-    {generateGrid(props.grid)}
-  </View>
-)
+class Grid extends React.PureComponent {
+  render() {
+    return (
+    <View className="Grid" style={styles.grid}>
+      {generateGrid(this.props.grid)}
+    </View>
+  )
+}
+}
 
 Grid.propTypes = {
   grid: PropTypes.array.isRequired,
